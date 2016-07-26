@@ -9,9 +9,8 @@ fi
 
 TOKEN=$(curl -s https://discovery.etcd.io/new?size=${CLUSTERSIZE} | awk -F/ '{print $4}')
 
-cat << EOF >> /home/dnon/logs/discovery-token.log
-===== GENERATED ON $(date) =====
-By:     $USER
+cat << EOF >> /home/$USER/discovery-token.log
+========== $(date) ==========
 Size:   $CLUSTERSIZE
 Token:  $TOKEN
 
