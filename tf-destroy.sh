@@ -7,4 +7,4 @@ else
   PREFIX=$1
 fi
 
-terraform destroy -var \'customer-prefix=${PREFIX}\' -var \'etcd-cluster-token=0\' -var \'tradi-count=0\'
+terraform destroy -var customer-prefix=$PREFIX -var etcd-cluster-token=0 -var tradi-count=0

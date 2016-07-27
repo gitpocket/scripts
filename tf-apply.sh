@@ -20,4 +20,4 @@ EOF
 echo "Terraforming new environment with the following token:"
 echo $TOKEN
 
-terraform apply -var \'customer-prefix=${PREFIX}\' -var \'etcd-cluster-token=$TOKEN\' -var \'tradi-count=0\'
+terraform apply -var customer-prefix=$PREFIX -var etcd-cluster-token=$TOKEN -var tradi-count=0
