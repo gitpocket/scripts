@@ -9,5 +9,5 @@ fi
 
 echo "Copying KubeCTL"
 scp core@$ADDRESS:/opt/bin/kubectl /usr/bin/kubectl
-chmod 0755 /usr/bin/kubectl
+sudo chmod 0755 /usr/bin/kubectl
 

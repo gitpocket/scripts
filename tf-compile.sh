@@ -4,6 +4,6 @@ docker run --rm -v ~/github/appfactory/terraform/:/go/src/github.com/hashicorp/t
 
 echo "Finished building"
 
-sudo mv ~/github/appfactory/terraform/bin/terraform /usr/bin/
+mv ~/github/appfactory/terraform/bin/terraform /usr/bin/
 
 echo "Copied binary to /usr/bin/"
