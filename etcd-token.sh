@@ -1,8 +1,8 @@
 #!/bin/bash
 if [ -z "$1" ]
 then
-  echo "Enter initial cluster size:"
-  read CLUSTERSIZE
+  echo "No cluster size provided. Using default value (3)."
+  CLUSTERSIZE=3
 else
   CLUSTERSIZE=$1
 fi
