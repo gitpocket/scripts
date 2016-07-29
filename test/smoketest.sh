@@ -9,6 +9,7 @@ then
 else
   NODE=$1
 fi
+####
 
 ssh -o StrictHostKeyChecking=no core@$NODE "
 echo 'Waiting for ETCD2 to come alive'
