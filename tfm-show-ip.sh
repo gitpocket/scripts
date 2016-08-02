@@ -1,7 +1,8 @@
 #!/bin/bash
 if [ -z "$1" ]
 then
-  echo "No customer-prefix provided. Exiting."
+  echo "$(tput setaf 1)No customer-prefix provided. Exiting.$(tput sgr0)"
+
   exit
 else
   PREFIX=$1
