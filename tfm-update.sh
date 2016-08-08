@@ -7,28 +7,11 @@ else
   PREFIX=${1}
 fi
 
-if [ -z "${2}" ]
-then
-  SIZE=3
-else
-  SIZE=${2}
-fi
-
 DIR="/home/${USER}/github/appfactory/appfactory-poc/terraform/"
 STATEFILE="${DIR}${PREFIX}.tfstate"
+TOKEN=$(terraform show ${STATEFILE} | grep vars.etcd_cluster_token | awk -F' = ' '{print $2}')
 
-TOKEN=$(curl -s https://discovery.etcd.io/new?size=${SIZE} | awk -F/ '{print $4}')
-
-cat << EOF >> /home/${USER}/etcd-token.log
-========== $(date) ==========
-Size:   ${SIZE}
-Prefix: ${PREFIX}
-Token:  ${TOKEN}
-
-EOF
-
-echo "Terraforming new environment with the following token:"
-echo ${TOKEN}
+echo "Updating $PREFIX "
 
 terraform get ${DIR}
 terraform apply -var customer-prefix=${PREFIX} -var etcd-cluster-token=${TOKEN} -var tradi-count=0 -state=${STATEFILE}

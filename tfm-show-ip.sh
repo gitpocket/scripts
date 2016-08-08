@@ -8,4 +8,4 @@ else
   PREFIX=$1
 fi
 
-terraform show ~/github/appfactory/$PREFIX/terraform.tfstate | grep "^[[:space:]]*ip_address"
+terraform show ~/github/appfactory/appfactory-poc/terraform/$PREFIX.tfstate | grep "^[[:space:]]*ip_address"
