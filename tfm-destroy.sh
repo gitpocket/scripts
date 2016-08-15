@@ -7,7 +7,10 @@ else
   PREFIX=${1}
 fi
 
-STATEFILE="/home/${USER}/github/appfactory/appfactory-poc/terraform/${PREFIX}.tfstate"
+DIR="/home/${USER}/github/appfactory/appfactory-poc/terraform/"
+STATEFILE="${DIR}${PREFIX}.tfstate"
+VARFILE="${DIR}terraform.tfvars"
 
-terraform destroy -var customer-prefix=${PREFIX} -var etcd-cluster-token=0 -var tradi-count=0 -state=${STATEFILE}
+terraform get ${DIR}
+terraform destroy -var customer-prefix=${PREFIX} -var etcd-cluster-token=0 -var tradi-count=0 -state=${STATEFILE} -var-file=${VARFILE} ${DIR}
 

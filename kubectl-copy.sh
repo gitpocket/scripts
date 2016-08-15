@@ -1,13 +1,13 @@
 #!/bin/bash
-if [ -z "$1" ]
+if [ -z "${1}" ]
 then
-  echo "Enter the address of your CoreOS master:"
-  read ADDRESS
+  echo "Enter the prefix of your CoreOS master:"
+  read PREFIX
 else
-  ADDRESS=$1
+  PREFIX=${1}
 fi
 
 echo "Copying KubeCTL"
-scp core@$ADDRESS:/opt/bin/kubectl /usr/bin/kubectl
-sudo chmod 0755 /usr/bin/kubectl
+scp core@${PREFIX}-appfactory0.westeurope.cloudapp.azure.com:/opt/bin/kubectl ~/ # /usr/bin/kubectl
+# sudo chmod 0755 /usr/bin/kubectl
 

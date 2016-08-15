@@ -9,10 +9,11 @@ fi
 
 DIR="/home/${USER}/github/appfactory/appfactory-poc/terraform/"
 STATEFILE="${DIR}${PREFIX}.tfstate"
+VARFILE="${DIR}terraform.tfvars"
 TOKEN=$(terraform show ${STATEFILE} | grep vars.etcd_cluster_token | awk -F' = ' '{print $2}')
 
 echo "Updating $PREFIX "
 
 terraform get ${DIR}
-terraform apply -var customer-prefix=${PREFIX} -var etcd-cluster-token=${TOKEN} -var tradi-count=0 -state=${STATEFILE}
+terraform apply -var customer-prefix=${PREFIX} -var etcd-cluster-token=${TOKEN} -var tradi-count=0 -state=${STATEFILE} -var-file=${VARFILE} ${DIR}
 

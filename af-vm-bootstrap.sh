@@ -60,13 +60,18 @@ EOF
 ls /etc/yum.repos.d/docker.repo
 
 # PACKAGES
-PACKAGES=( vim-enhanced net-tools docker-engine git java-1.8.0-openjdk kubernetes-client rng-tools )
+PACKAGES=( vim-enhanced net-tools docker-engine git java-1.8.0-openjdk rng-tools )
 echo "$(tput setaf 2)Installing packages$(tput sgr0)"
 for PACKAGE in ${PACKAGES[@]}
 do
   yum install -y $PACKAGE >/dev/null
   echo "$PACKAGE installed"
 done
+
+echo "Installing Kubernetes Client"
+curl https://storage.googleapis.com/kubernetes-release/release/v1.3.4/bin/linux/amd64/kubectl -o /tmp/kubectl
+chmod +x kubectl
+mv /tmp/kubectl /usr/local/bin/kubectl
 
 # SERVICES
 echo "$(tput setaf 2)Enabeling services$(tput sgr0)"
