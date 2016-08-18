@@ -11,6 +11,8 @@ DIR="/home/${USER}/github/appfactory/appfactory-poc/terraform/"
 STATEFILE="${DIR}${PREFIX}.tfstate"
 VARFILE="${DIR}terraform.tfvars"
 
+rm -f ~/.ssh/known_hosts
+
 terraform get ${DIR}
 terraform destroy -var customer-prefix=${PREFIX} -var etcd-cluster-token=0 -var tradi-count=0 -state=${STATEFILE} -var-file=${VARFILE} ${DIR}
 
