@@ -7,12 +7,7 @@ else
   PREFIX=${1}
 fi
 
-if [ -z "${2}" ]
-then
-  SIZE=3
-else
-  SIZE=${2}
-fi
+SIZE=${2:-"3"}
 
 DIR="/home/${USER}/github/appfactory/appfactory-poc/terraform/"
 STATEFILE="${DIR}${PREFIX}.tfstate"
@@ -20,13 +15,13 @@ VARFILE="${DIR}terraform.tfvars"
 
 TOKEN=$(curl -s https://discovery.etcd.io/new?size=${SIZE} | awk -F/ '{print $4}')
 
-cat << EOF >> /home/${USER}/etcd-token.log
-========== $(date) ==========
-Size:   ${SIZE}
-Prefix: ${PREFIX}
-Token:  ${TOKEN}
-
-EOF
+#cat << EOF >> /home/${USER}/etcd-token.log
+#========== $(date) ==========
+#Size:   ${SIZE}
+#Prefix: ${PREFIX}
+#Token:  ${TOKEN}
+#
+#EOF
 
 echo "Terraforming new environment with the following token:"
 echo ${TOKEN}

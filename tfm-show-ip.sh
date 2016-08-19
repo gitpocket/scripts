@@ -5,7 +5,12 @@ then
 
   exit
 else
-  PREFIX=$1
+  CUSTOMERPREFIX=$1
 fi
 
-terraform show ~/github/appfactory/appfactory-poc/terraform/$PREFIX.tfstate | grep "^[[:space:]]*ip_address"
+# terraform show ~/github/appfactory/appfactory-poc/terraform/$PREFIX.tfstate | grep "^[[:space:]]*ip_address"
+terraform get ../terraform/ &>/dev/null
+echo "$(tput setaf 2)Master(s):$(tput sgr0)"
+terraform output -state=/home/$USER/github/appfactory/appfactory-poc/terraform/${CUSTOMERPREFIX}.tfstate -module=kpnappfactory k8s-master.public_ips | sed 's/,/\n/g'
+echo "$(tput setaf 2)Nodes:$(tput sgr0)"
+terraform output -state=/home/$USER/github/appfactory/appfactory-poc/terraform/${CUSTOMERPREFIX}.tfstate -module=kpnappfactory k8s-node.public_ips | sed 's/,/\n/g'
