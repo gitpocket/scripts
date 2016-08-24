@@ -7,7 +7,7 @@ then
 else
   CUSTOMERPREFIX=$1
 fi
-TFDIR="/home/${USER}/github/appfactory/appfactory-poc/terraform/"
+TFDIR="/home/${USER}/src/github.com/nautsio/appfactory-poc/terraform/"
 
 terraform get ${TFDIR} &>/dev/null
 echo "$(tput setaf 2)Master(s):$(tput sgr0)"

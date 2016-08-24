@@ -98,7 +98,7 @@ cat << EOF > /home/$USERNAME/.gitconfig
 EOF
 echo "Git config written to /home/$USERNAME/.gitconfig"
 echo "$(tput setaf 2)Cloning AppFactory git repositories$(tput sgr0)"
-GITDIR="/home/$USERNAME/github/appfactory/"
+GITDIR="/home/$USERNAME/src/github.com/nautsio/"
 GITREPOS=( appfactory-poc terraform )
 mkdir $GITDIR -p
 echo "$(tput setaf 2)Enter your GitHub username:$(tput sgr0)"

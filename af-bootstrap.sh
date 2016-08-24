@@ -9,7 +9,7 @@ DIR=`pwd`
 TERRAFORMDIR="../terraform/"
 STATEFILE="${1:-"terraform"}.tfstate"
 
-cd /home/${USER}/github/appfactory/appfactory-poc/kubernetes/
+cd /home/${USER}/src/github.com/nautsio/appfactory-poc/kubernetes/
 
 if [ ! -f "${TERRAFORMDIR}${STATEFILE}" ]
 then

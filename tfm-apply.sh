@@ -9,7 +9,7 @@ fi
 
 SIZE=${2:-"3"}
 
-DIR="/home/${USER}/github/appfactory/appfactory-poc/terraform/"
+DIR="/home/${USER}/src/github.com/nautsio/appfactory-poc/terraform/"
 STATEFILE="${DIR}${PREFIX}.tfstate"
 VARFILE="${DIR}terraform.tfvars"
 

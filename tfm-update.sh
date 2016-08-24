@@ -7,7 +7,7 @@ else
   PREFIX=${1}
 fi
 
-DIR="/home/${USER}/github/appfactory/appfactory-poc/terraform/"
+DIR="/home/${USER}/src/github.com/nautsio/appfactory-poc/terraform/"
 STATEFILE="${DIR}${PREFIX}.tfstate"
 VARFILE="${DIR}terraform.tfvars"
 TOKEN=$(terraform show ${STATEFILE} | grep vars.etcd_cluster_token | awk -F' = ' '{print $2}')
