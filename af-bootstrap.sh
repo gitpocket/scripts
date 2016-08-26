@@ -6,7 +6,7 @@ then
 fi
 
 DIR=`pwd`
-TERRAFORMDIR="../terraform/"
+TERRAFORMDIR="/home/${USER}/src/github.com/nautsio/appfactory-poc/terraform/"
 STATEFILE="${1:-"terraform"}.tfstate"
 
 cd /home/${USER}/src/github.com/nautsio/appfactory-poc/kubernetes/
