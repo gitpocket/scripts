@@ -4,4 +4,4 @@ docker run --rm -v /home/dnon/src/github.com/nautsio/terraform/:/go/src/github.c
 
 echo "Finished building"
 
-sudo cp ~/src/github.com/nautsio/terraform/bin/terraform /usr/local/bin/ && echo "Copied binary to /usr/local/bin/"
+cp ~/src/github.com/nautsio/terraform/bin/terraform ~/bin/ && echo "$(tput setaf 2)Copied binary to /home/$USER/bin/$(tput sgr0)"

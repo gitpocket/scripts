@@ -14,4 +14,8 @@ VARFILE="${DIR}terraform.tfvars"
 terraform get ${DIR}
 terraform destroy -var customer-prefix=${PREFIX} -var etcd-cluster-token=0 -var tradi-count=0 -state=${STATEFILE} -var-file=${VARFILE} ${DIR}
 
-rm -f ~/.ssh/known_hosts ${STATEFILE} ${STATEFILE}.backup
+if [ $(echo $?) -eq 0 ]
+then
+  rm -f ~/.ssh/known_hosts ${STATEFILE} ${STATEFILE}.backup
+  echo "$(tput setaf 2)statefile removed$(tput sgr0)"
+fi
