@@ -1,17 +1,15 @@
 #!/bin/bash
-if [ -z "$1" ]
+
+if [ -z "${1}" ]
 then
   echo "$(tput setaf 1)No customer-prefix provided. Exiting.$(tput sgr0)"
 
   exit
 else
-  CUSTOMERPREFIX=$1
+  CUSTOMERPREFIX=${1}
 fi
 
-echo "$(tput setaf 2)Enter IAAS Provider (VPC or Azure)$(tput sgr0)"
-read PLATFORM
-
-if [ "${PLATFORM}" == "vpc" ]
+if grep -A2 "\"path\"\: \[" ~/appfactory/terraform/${CUSTOMERPREFIX}.tfstate | grep vpc &>/dev/null
 then
   MODULE="vpc"
 else
