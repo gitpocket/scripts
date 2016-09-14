@@ -8,7 +8,7 @@ else
 fi
 
 TFDIR="/home/${USER}/src/github.com/nautsio/appfactory-poc/terraform/"
-MODULE=$(cat ${TFDIR}/${CUSTOMERPREFIX}.tfstate | jq '.modules[1]["path"][1]' | sed 's/"//g')
+MODULE=$(cat ${TFDIR}/${CUSTOMERPREFIX}.tfstate | jq -r '.modules[1]["path"][1]')
 
 terraform get ${TFDIR} &>/dev/null
 MASTER=$(terraform output -state=${TFDIR}${CUSTOMERPREFIX}.tfstate -module=${MODULE} k8s-master.public_ips | awk -F"," '{print $1}')
