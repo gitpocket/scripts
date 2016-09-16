@@ -8,12 +8,5 @@ CLUSTERSIZE=${1:-"3"}
 
 TOKEN=$(curl -s https://discovery.etcd.io/new?size=${CLUSTERSIZE} | awk -F/ '{print $4}')
 
-#cat << EOF >> /home/$USER/etcd-token.log
-#========== $(date) ==========
-#Size:   $CLUSTERSIZE
-#Token:  $TOKEN
-#
-#EOF
-
-echo "New ETCD Discovery Token:"
+echo "$(tput setaf 2)New ETCD Discovery Token:$(tput sgr0)"
 echo $TOKEN

@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ -z "${1}" ]
 then
-  echo "No customer-prefix provided. Exiting."
+  echo "$(tput setaf 1)No customer-prefix provided. Exiting.$(tput sgr0)"
   exit
 else
   PREFIX=${1}
@@ -15,15 +15,7 @@ VARFILE="${DIR}terraform.tfvars"
 
 TOKEN=$(curl -s https://discovery.etcd.io/new?size=${SIZE} | awk -F/ '{print $4}')
 
-#cat << EOF >> /home/${USER}/etcd-token.log
-#========== $(date) ==========
-#Size:   ${SIZE}
-#Prefix: ${PREFIX}
-#Token:  ${TOKEN}
-#
-#EOF
-
-echo "Terraforming new environment with the following token:"
+echo "$(tput setaf 2)Terraforming new environment with the following token:$(tput sgr0)"
 echo ${TOKEN}
 
 terraform get ${DIR}
