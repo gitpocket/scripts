@@ -24,9 +24,9 @@ cp ${DIR}main.${PLATFORM} ${DIR}main.tf
 
 TOKEN=$(curl -s https://discovery.etcd.io/new?size=${SIZE} | awk -F/ '{print $4}')
 
-echo "$(tput setaf 2)Terraforming new environment with the following token:$(tput sgr0)"
+echo "$(tput setaf 2)Terraforming new environment on ${PLATFORM^^} with the following token:$(tput sgr0)"
 echo ${TOKEN}
 
 terraform get ${DIR}
-terraform apply -var customer-prefix=${PREFIX} -var etcd-cluster-token=${TOKEN} -var tradi-count=0 -state=${STATEFILE} -var-file=${VARFILE} ${DIR}
+#terraform apply -var customer-prefix=${PREFIX} -var etcd-cluster-token=${TOKEN} -var tradi-count=0 -state=${STATEFILE} -var-file=${VARFILE} ${DIR}
 
