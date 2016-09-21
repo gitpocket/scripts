@@ -7,11 +7,20 @@ else
   PREFIX=${1}
 fi
 
-SIZE=${2:-"3"}
+PLATFORM=${2:-"azure"}
+if [[ ! "${PLATFORM}" =~ (azure|vpc) ]]
+then
+  echo "$(tput setaf 1)Unknown platform ${PLATFORM}$(tput sgr0)"
+  exit 1
+fi
+
+SIZE=${3:-"3"}
 
 DIR="/home/${USER}/src/github.com/nautsio/appfactory-poc/terraform/"
 STATEFILE="${DIR}${PREFIX}.tfstate"
 VARFILE="${DIR}terraform.tfvars"
+
+cp ${DIR}main.${PLATFORM} ${DIR}main.tf
 
 TOKEN=$(curl -s https://discovery.etcd.io/new?size=${SIZE} | awk -F/ '{print $4}')
 

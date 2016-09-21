@@ -11,6 +11,14 @@ DIR="/home/${USER}/src/github.com/nautsio/appfactory-poc/terraform/"
 STATEFILE="${DIR}${PREFIX}.tfstate"
 VARFILE="${DIR}terraform.tfvars"
 TOKEN=$(terraform show ${STATEFILE} | grep vars.etcd_cluster_token | awk -F' = ' '{print $2}')
+PLATFORM=$(cat ${STATEFILE} | jq -r '.modules[1]["path"][1]')
+
+if [[ $PLATFORM == "kpnappfactory" ]]
+then
+  cp ${DIR}main.azure ${DIR}main.tf
+else
+  cp ${DIR}main.$PLATFORM ${DIR}main.tf
+fi
 
 echo "$(tput setaf 2)Updating $PREFIX $(tput sgr0)"
 
