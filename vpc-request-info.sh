@@ -4,7 +4,7 @@
 if [[ ${1} == *"https"* ]]
 then
   #REQUESTID=$(echo ${ID} | awk -F= '{print $4}' | awk -F, '{print $1}')
-  REQUESTID=$(echo ${1} | sed 's/.*requestId\:\=//' | sed 's/\,actionId.*//')
+  REQUESTID=$(echo ${1} | sed 's/.*requestId\:\=//' | sed 's/\,.*//')
   echo "$(tput setaf 2)Using request ID $(tput sgr0)"
   echo "${REQUESTID}"
 elif [ ! -z ${1} ]
@@ -16,7 +16,7 @@ else
   if [[ ${ID} == *"https"* ]]
     then
     #REQUESTID=$(echo ${ID} | awk -F= '{print $4}' | awk -F, '{print $1}')
-    REQUESTID=$(echo ${ID} | sed 's/.*requestId\:\=//' | sed 's/\,actionId.*//')
+    REQUESTID=$(echo ${ID} | sed 's/.*requestId\:\=//' | sed 's/\,.*//')
     echo "$(tput setaf 2)Using request ID:$(tput sgr0)"
     echo "${REQUESTID}"
   elif [ ! -z ${ID} ]
