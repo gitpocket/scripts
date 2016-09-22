@@ -28,5 +28,4 @@ echo "$(tput setaf 2)Terraforming new environment on ${PLATFORM^^} with the foll
 echo ${TOKEN}
 
 terraform get ${DIR}
-#terraform apply -var customer-prefix=${PREFIX} -var etcd-cluster-token=${TOKEN} -var tradi-count=0 -state=${STATEFILE} -var-file=${VARFILE} ${DIR}
-
+terraform apply -var customer-prefix=${PREFIX} -var etcd-cluster-token=${TOKEN} -var tradi-count=0 -state=${STATEFILE} -var-file=${VARFILE} ${DIR}
