@@ -13,7 +13,7 @@ cd /home/${USER}/src/github.com/nautsio/appfactory-poc/kubernetes/
 
 if [ ! -f "${TERRAFORMDIR}${STATEFILE}" ]
 then
-  echo "$(tput setaf 1)ERROR: ${STATEFILE} does not exist in ${TERRAFORMDIR}.$(tput sgr0)"
+  echo "$(tput setaf 1)ERROR: ${STATEFILE} does not exist in ${TERRAFORMDIR}$(tput sgr0)"
   cd ${DIR}
   exit 1
 fi

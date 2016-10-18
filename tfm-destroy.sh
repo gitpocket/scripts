@@ -21,7 +21,7 @@ else
 fi
 
 terraform get ${DIR}
-terraform destroy -var customer-prefix=${PREFIX} -var etcd-cluster-token=0 -var tradi-count=0 -state=${STATEFILE} -var-file=${VARFILE} ${DIR}
+terraform destroy ${2} -var customer-prefix=${PREFIX} -var etcd-cluster-token=0 -var tradi-count=0 -state=${STATEFILE} -var-file=${VARFILE} ${DIR}
 
 if [ $(echo $?) -eq 0 ]
 then
