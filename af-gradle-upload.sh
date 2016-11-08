@@ -6,20 +6,23 @@ then
   exit 1
 fi
 
-lsof -i :8082 | grep LISTEN &> /dev/null
-if [ $? != "0" ]; then
-    echo "No tunnel to Jenkins on port 8082"
-    exit 1
-fi
+echo "$(tput setaf 2)Enter customer prefix:$(tput sgr0)"
+read PREFIX
 
-JENKINS_ADDRESS="http://localhost:80822/"
-GRADLEW_PATH="/home/$USER/appfactory/pipeline"
+DIR="/home/${USER}/src/github.com/nautsio/appfactory-poc"
+STATEFILE="${DIR}/terraform/${PREFIX}.tfstate"
+VARFILE="${DIR}/terraform/terraform.tfvars"
+TOKEN=$(terraform show ${STATEFILE} | grep vars.etcd_cluster_token | awk -F' = ' '{print $2}')
+PLATFORM=$(cat ${STATEFILE} | jq -r '.modules[1]["path"][1]')
+
+JENKINS_ADDRESS="http://$MASTER_IP:8081/"
+GRADLEW_PATH="$DIR/pipeline"
 FILE_PATH=$(readlink -f $1)
 
 if [ -z $IPA_USER ]
 then
   echo "Enter user:"
-  read $USERNAME
+  read USERNAME
 else
   USERNAME=$IPA_USER
 fi
@@ -27,7 +30,7 @@ fi
 if [ -z $IPA_PASSWORD ]
 then
   echo "Enter password:"
-  read PASSWORD
+  read -s PASSWORD
 else
   PASSWORD=$IPA_PASSWORD
 fi
